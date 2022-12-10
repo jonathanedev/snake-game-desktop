@@ -14,8 +14,12 @@ public class GridPanel extends JPanel {
 
 
     public GridPanel(GUI gui) {
+        super(new GridLayout(gui.getGame().getGrid().getGridSize(), gui.getGame().getGrid().getGridSize()));
+        Dimension panelSize = new Dimension(gui.getGridPanelSize(), gui.getGridPanelSize());
+        setPreferredSize(panelSize);
+
         grid = gui.getGame().getGrid();
-        gridSize = grid.getSize();
+        gridSize = grid.getGridSize();
         cellPanel = new CellPanel[gridSize][gridSize];
     }
 }

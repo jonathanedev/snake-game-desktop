@@ -10,12 +10,12 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Grid {
 
-    private int size;
+    private int gridSize;
     private Cell[][] grid;
     private Snake snake;
 
     public Grid(int size) {
-        this.size = size;
+        gridSize = size;
         grid = new Cell[size][size];
 
         snake = new Snake();
@@ -29,8 +29,8 @@ public class Grid {
 
     private int[] generateRandomPosition() {
         int[] position = new int[2];
-        position[0] = ThreadLocalRandom.current().nextInt(0, size + 1);
-        position[1] = ThreadLocalRandom.current().nextInt(0, size + 1);
+        position[0] = ThreadLocalRandom.current().nextInt(0, gridSize + 1);
+        position[1] = ThreadLocalRandom.current().nextInt(0, gridSize + 1);
 
         return position;
     }
@@ -39,7 +39,7 @@ public class Grid {
         return grid[position[0]][position[1]];
     }
 
-    public int getSize() {
-        return size;
+    public int getGridSize() {
+        return gridSize;
     }
 }

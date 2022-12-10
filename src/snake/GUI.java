@@ -34,6 +34,14 @@ public class GUI extends JFrame {
         }
     }
 
+    public int getGridPanelSize() {
+        return ((int) (0.7 * getScreenHeight()));
+    }
+
+    public int getScreenHeight() {
+        return getGraphicsConfiguration().getBounds().height;
+    }
+
     public Game getGame() {
         return game;
     }
