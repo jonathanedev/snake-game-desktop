@@ -17,9 +17,18 @@ public class Grid {
     public Grid(int size) {
         gridSize = size;
         grid = new Cell[size][size];
+        initGrid();
 
         snake = new Snake();
         placeSnake(generateRandomPosition());
+    }
+
+    private void initGrid() {
+        for (int i=0; i<gridSize; i++) {
+            for (int j=0; j<gridSize; j++) {
+                grid[i][j] = new Cell();
+            }
+        }
     }
 
     private void placeSnake(int[] position) {
@@ -31,7 +40,6 @@ public class Grid {
         int[] position = new int[2];
         position[0] = ThreadLocalRandom.current().nextInt(0, gridSize + 1);
         position[1] = ThreadLocalRandom.current().nextInt(0, gridSize + 1);
-
         return position;
     }
 
