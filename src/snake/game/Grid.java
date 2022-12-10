@@ -2,8 +2,14 @@ package snake.game;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * {@code snake.game.Grid} holds that 2D array of {@link snake.game.Cell} and
+ * uses user input to move the snake around.
+ * 
+ * @author jonathane
+ */
 public class Grid {
- 
+
     private int size;
     private Cell[][] grid;
     private Snake snake;

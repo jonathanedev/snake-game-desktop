@@ -1,5 +1,11 @@
 package snake.game;
 
+/**
+ * {@code snake.game.Snake} is the object used by the player to interact with
+ * the grid.
+ * 
+ * @author jonathane
+ */
 public class Snake {
     private int[] position;
 
