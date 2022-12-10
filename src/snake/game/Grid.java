@@ -38,4 +38,8 @@ public class Grid {
     public Cell getCell(int[] position) {
         return grid[position[0]][position[1]];
     }
+
+    public int getSize() {
+        return size;
+    }
 }

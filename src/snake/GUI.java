@@ -1,15 +1,22 @@
 package snake;
 
 import javax.swing.*;
+
+import snake.game.Game;
+
 import java.awt.*;
 
 public class GUI extends JFrame {
+
+    private Game game;
 
     public static void main(String[] args) {
         new GUI();
     }
 
     public GUI() {
+        game = new Game();
+
         setTitle("Snake");
         setLookAndFeel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,5 +32,9 @@ public class GUI extends JFrame {
             e.printStackTrace();
             System.exit(1);  
         }
+    }
+
+    public Game getGame() {
+        return game;
     }
 }
