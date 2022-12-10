@@ -28,6 +28,7 @@ public class GridPanel extends JPanel {
         for (int i=0; i<gridSize; i++) {
             for (int j=0; j<gridSize; j++) {
                 cellPanel[i][j] = new CellPanel(grid.getCell(i,j));
+                this.add(cellPanel[i][j]);
             }
         }
     }

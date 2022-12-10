@@ -3,6 +3,7 @@ package snake;
 import javax.swing.*;
 
 import snake.game.Game;
+import snake.gui.GridPanel;
 
 import java.awt.*;
 
@@ -21,6 +22,7 @@ public class GUI extends JFrame {
         setLookAndFeel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
+        initComponents();
         setVisible(true);
     }
 
@@ -32,6 +34,11 @@ public class GUI extends JFrame {
             e.printStackTrace();
             System.exit(1);  
         }
+    }
+
+    private void initComponents() {
+        add(new GridPanel(this));
+        pack();
     }
 
     public int getGridPanelSize() {
