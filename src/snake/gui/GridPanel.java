@@ -21,5 +21,14 @@ public class GridPanel extends JPanel {
         grid = gui.getGame().getGrid();
         gridSize = grid.getGridSize();
         cellPanel = new CellPanel[gridSize][gridSize];
+        initCellPanel();
+    }
+
+    private void initCellPanel() {
+        for (int i=0; i<gridSize; i++) {
+            for (int j=0; j<gridSize; j++) {
+                cellPanel[i][j] = new CellPanel(grid.getCell(i,j));
+            }
+        }
     }
 }

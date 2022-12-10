@@ -47,6 +47,10 @@ public class Grid {
         return grid[position[0]][position[1]];
     }
 
+    public Cell getCell(int i, int j) {
+        return grid[i][j];
+    }
+
     public int getGridSize() {
         return gridSize;
     }
