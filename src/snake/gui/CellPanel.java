@@ -16,7 +16,12 @@ public class CellPanel extends JPanel {
         this.cell = cell;
 
         Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
-        setBackground(Color.CYAN);
+        setBackground(getColour());
         setBorder(blackLine);
+    }
+
+    private Color getColour() {
+        if (cell.getSnake()) return new Color(255, 153, 0);
+        return new Color(0, 153, 5);
     }
 }
