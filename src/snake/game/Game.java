@@ -20,4 +20,8 @@ public class Game {
     public Game(int gridSize) {
         grid = new Grid(gridSize);
     }
+
+    public Grid getGrid() {
+        return grid;
+    }
 }
