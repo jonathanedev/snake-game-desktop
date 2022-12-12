@@ -21,6 +21,10 @@ public class Game {
         grid = new Grid(gridSize);
     }
 
+    public void move(String direction) {
+        grid.moveSnake(direction);
+    }
+
     public Grid getGrid() {
         return grid;
     }

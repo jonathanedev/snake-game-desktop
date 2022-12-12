@@ -1,11 +1,11 @@
 package snake;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import snake.game.Game;
 import snake.gui.GridPanel;
-
-import java.awt.*;
 
 public class GUI extends JFrame {
 
@@ -24,6 +24,8 @@ public class GUI extends JFrame {
         setResizable(false);
         initComponents();
         setVisible(true);
+
+        keyBinding();
     }
 
     private void setLookAndFeel() {
@@ -39,6 +41,31 @@ public class GUI extends JFrame {
     private void initComponents() {
         add(new GridPanel(this));
         pack();
+    }
+
+    
+    private void keyBinding() {
+        class KeyBinding extends KeyAdapter {
+
+            private final GUI gui;
+
+            KeyBinding(GUI gui) {
+                this.gui = gui;
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int keyCode = e.getKeyCode();
+
+                if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) gui.getGame().move("n");
+                else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) gui.getGame().move("s");
+                else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) gui.getGame().move("w");
+                else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) gui.getGame().move("e");
+            }
+        }
+
+        setFocusable(true);
+        this.addKeyListener(new KeyBinding(this));
     }
 
     public int getGridPanelSize() {
