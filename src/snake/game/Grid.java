@@ -43,6 +43,40 @@ public class Grid {
         return position;
     }
 
+    public void moveSnake(String direction) {
+        int[] newPosition = getTargetPosition(snake.getPosition(), direction);
+
+        getCell(snake.getPosition()).setSnake(false);
+        snake.setPosition(newPosition);
+        getCell(newPosition).setSnake(true);
+    }
+
+    private int[] getTargetPosition(int[] position, String direction) {
+        int[] newPosition = { position[0], position[1] };
+        int distance = 1;
+
+        switch (direction) {
+            case "n":
+                int newRow = newPosition[0] - distance;
+                newPosition[0] = newRow;
+                break;
+            case "e":
+                int newCol = newPosition[1] + distance;
+                newPosition[1] = newCol;
+                break;
+            case "s":
+                newRow = newPosition[0] + distance;
+                newPosition[0] = newRow; 
+                break;
+            case "w":
+                newCol = newPosition[1] - distance;
+                newPosition[1] = newCol;
+                break;
+        }
+
+        return newPosition;
+    }
+
     public Cell getCell(int[] position) {
         return grid[position[0]][position[1]];
     }
