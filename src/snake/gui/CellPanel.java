@@ -24,4 +24,8 @@ public class CellPanel extends JPanel {
         if (cell.getSnake()) return new Color(255, 153, 0);
         return new Color(0, 153, 5);
     }
+
+    public void refresh() {
+        setBackground(getColour());
+    }
 }

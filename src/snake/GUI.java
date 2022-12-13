@@ -10,6 +10,7 @@ import snake.gui.GridPanel;
 public class GUI extends JFrame {
 
     private Game game;
+    private GridPanel gridPanel;
 
     public static void main(String[] args) {
         new GUI();
@@ -39,7 +40,8 @@ public class GUI extends JFrame {
     }
 
     private void initComponents() {
-        add(new GridPanel(this));
+        gridPanel = new GridPanel(this);
+        add(gridPanel);
         pack();
     }
 
@@ -57,15 +59,20 @@ public class GUI extends JFrame {
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
 
-                if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) gui.getGame().move("n");
-                else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) gui.getGame().move("s");
-                else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) gui.getGame().move("w");
-                else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) gui.getGame().move("e");
+                if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) handleMove("n");
+                else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) handleMove("s");
+                else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) handleMove("w");
+                else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) handleMove("e");
             }
         }
 
         setFocusable(true);
         this.addKeyListener(new KeyBinding(this));
+    }
+
+    public void handleMove(String direction) {
+        game.move(direction);
+        gridPanel.update();
     }
 
     public int getGridPanelSize() {
