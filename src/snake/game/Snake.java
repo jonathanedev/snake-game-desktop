@@ -1,5 +1,7 @@
 package snake.game;
 
+import java.util.ArrayList;
+
 /**
  * {@code snake.game.Snake} is the object used by the player to interact with
  * the grid.
@@ -7,13 +9,27 @@ package snake.game;
  * @author jonathane
  */
 public class Snake {
-    private int[] position;
 
-    public int[] getPosition() {
-        return position;
+    private int[] head;
+    private ArrayList<Integer[]> position;
+
+    public Snake(int[] head) {
+        this.head = head;
     }
 
-    public void setPosition(int[] position) {
-        this.position = position;
+    public int[] getHead() {
+        return head;
+    }
+
+    public void setHead(int[] position) {
+        head = position;
+    }
+
+    public void addPosition(Integer[] position) {
+        this.position.add(position);
+    }
+
+    public void removePosition() {
+        position.remove(position.size()-1);
     }
 }
