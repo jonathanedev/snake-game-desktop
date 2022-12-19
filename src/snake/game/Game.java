@@ -11,21 +11,21 @@ public class Game {
 
     private static final int DEFAULT_GRID_SIZE = 25;
 
-    private final Grid grid;
+    private final Board grid;
 
     public Game() {
         this(DEFAULT_GRID_SIZE);
     }
 
     public Game(int gridSize) {
-        grid = new Grid(gridSize);
+        grid = new Board(gridSize);
     }
 
     public void move(String direction) {
         grid.moveSnake(direction);
     }
 
-    public Grid getGrid() {
+    public Board getGrid() {
         return grid;
     }
 }

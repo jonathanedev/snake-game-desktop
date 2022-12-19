@@ -10,19 +10,14 @@ import java.util.ArrayList;
  */
 public class Snake {
 
-    private int[] head;
-    private ArrayList<Integer[]> position;
+    private ArrayList<Integer[]> position = new ArrayList<>();
 
-    public Snake(int[] head) {
-        this.head = head;
+    public Integer[] getHead() {
+        return position.get(position.size()-1);
     }
 
-    public int[] getHead() {
-        return head;
-    }
-
-    public void setHead(int[] position) {
-        head = position;
+    public Integer[] getPosition(int index) {
+        return position.get(index);
     }
 
     public void addPosition(Integer[] position) {
@@ -30,6 +25,6 @@ public class Snake {
     }
 
     public void removePosition() {
-        position.remove(position.size()-1);
+        position.remove(0);
     }
 }

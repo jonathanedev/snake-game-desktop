@@ -8,51 +8,63 @@ import java.util.concurrent.ThreadLocalRandom;
  * 
  * @author jonathane
  */
-public class Grid {
+public class Board {
 
-    private int gridSize;
-    private Cell[][] grid;
+    private static final int DEFAULT_BOARD_SIZE = 15;
+    private static final int DEFAULT_SNAKE_LENGTH = 3;
+
+    private int boardSize;
+    private Cell[][] board;
     private Snake snake;
 
-    public Grid(int size) {
-        gridSize = size;
-        grid = new Cell[size][size];
-        initGrid();
-
-        snake = new Snake();
-        placeSnake(generateRandomPosition());
+    public Board() {
+        this(DEFAULT_BOARD_SIZE);
     }
 
-    private void initGrid() {
-        for (int i=0; i<gridSize; i++) {
-            for (int j=0; j<gridSize; j++) {
-                grid[i][j] = new Cell();
+    public Board(int size) {
+        boardSize = size;
+        board = new Cell[size][size];
+        initBoard();
+        generateSnake();
+    }
+
+    /**
+     * Creates Cell objects in the 2D array.
+     */
+    private void initBoard() {
+        for (int i=0; i<boardSize; i++) {
+            for (int j=0; j<boardSize; j++) {
+                board[i][j] = new Cell();
             }
         }
     }
 
-    private void placeSnake(int[] position) {
-        snake.setPosition(position);
-        getCell(position).setSnake(true);
+    /**
+     * Adds the snake onto the boards centre position.
+     * Positions added to the snake are accessed in the 2D array with snake boolean set true.
+     */
+    private void generateSnake() {
+        snake = new Snake();
+
+        for (int i=DEFAULT_SNAKE_LENGTH; i>0; i--) {
+            Integer[] position = { boardSize/2, boardSize/2 -i };
+            snake.addPosition(position);
+            getCell(position).setSnake(true);
+        }
     }
 
-    private int[] generateRandomPosition() {
-        int[] position = new int[2];
-        position[0] = ThreadLocalRandom.current().nextInt(0, gridSize + 1);
-        position[1] = ThreadLocalRandom.current().nextInt(0, gridSize + 1);
-        return position;
-    }
-
+    
     public void moveSnake(String direction) {
-        int[] newPosition = getTargetPosition(snake.getPosition(), direction);
+        Integer[] newPosition = getTargetPosition(snake.getHead(), direction);
 
-        getCell(snake.getPosition()).setSnake(false);
-        snake.setPosition(newPosition);
+        getCell(snake.getPosition(0)).setSnake(false);
+        snake.addPosition(newPosition);
         getCell(newPosition).setSnake(true);
+        snake.removePosition();
     }
 
-    private int[] getTargetPosition(int[] position, String direction) {
-        int[] newPosition = { position[0], position[1] };
+    private Integer[] getTargetPosition(Integer[] position, String direction) {
+        Integer[] newPosition = { position[0], position[1] };
         int distance = 1;
 
         switch (direction) {
@@ -77,15 +89,26 @@ public class Grid {
         return newPosition;
     }
 
+    private int[] generateRandomPosition() {
+        int[] position = new int[2];
+        position[0] = ThreadLocalRandom.current().nextInt(0, boardSize + 1);
+        position[1] = ThreadLocalRandom.current().nextInt(0, boardSize + 1);
+        return position;
+    }
+
+    public Cell getCell(Integer[] position) {
+        return getCell(new int[]{position[0], position[1]});
+    }
+
     public Cell getCell(int[] position) {
-        return grid[position[0]][position[1]];
+        return getCell(position[0], position[1]);
     }
 
     public Cell getCell(int i, int j) {
-        return grid[i][j];
+        return board[i][j];
     }
 
     public int getGridSize() {
-        return gridSize;
+        return boardSize;
     }
 }

@@ -3,12 +3,12 @@ package snake.gui;
 import javax.swing.*;
 import java.awt.*;
 
-import snake.game.Grid;
+import snake.game.Board;
 import snake.GUI;
 
 public class GridPanel extends JPanel {
     
-    private final Grid grid;
+    private final Board grid;
     private final int gridSize;
     private final CellPanel[][] cellPanel;
 
