@@ -26,6 +26,7 @@ public class Board {
         board = new Cell[size][size];
         initBoard();
         generateSnake();
+        generateApple();
     }
 
     /**
@@ -57,10 +58,21 @@ public class Board {
     public void moveSnake(String direction) {
         Integer[] newPosition = getTargetPosition(snake.getHead(), direction);
 
-        getCell(snake.getPosition(0)).setSnake(false);
-        snake.addPosition(newPosition);
-        getCell(newPosition).setSnake(true);
-        snake.removePosition();
+        if (getCell(newPosition).getApple()) {
+            appleCollision(newPosition);
+            generateApple();
+        } else {
+            getCell(snake.getPosition(0)).setSnake(false);
+            snake.addPosition(newPosition);
+            getCell(newPosition).setSnake(true);
+            snake.removePosition();
+        }
+    }
+
+    private void appleCollision(Integer[] position) {
+        snake.addPosition(position);
+        getCell(position).setSnake(true);
+        getCell(position).setApple(false);
     }
 
     private Integer[] getTargetPosition(Integer[] position, String direction) {
@@ -87,6 +99,17 @@ public class Board {
         }
 
         return newPosition;
+    }
+
+    private void generateApple() {
+        boolean placed = false;
+        while(!placed) {
+            int[] position = generateRandomPosition();
+            if (!(getCell(position).getApple() || getCell(position).getSnake())) {
+                getCell(position).setApple(true);
+                placed = true;
+            } 
+        }
     }
 
     private int[] generateRandomPosition() {
