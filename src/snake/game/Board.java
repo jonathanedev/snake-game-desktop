@@ -131,7 +131,7 @@ public class Board {
         return board[i][j];
     }
 
-    public int getGridSize() {
+    public int getBoardSize() {
         return boardSize;
     }
 }

@@ -9,23 +9,23 @@ package snake.game;
  */
 public class Game {
 
-    private static final int DEFAULT_GRID_SIZE = 25;
+    public static final int DEFAULT_BOARD_SIZE = 25;
 
-    private final Board grid;
+    private final Board board;
 
     public Game() {
-        this(DEFAULT_GRID_SIZE);
+        this(DEFAULT_BOARD_SIZE);
     }
 
-    public Game(int gridSize) {
-        grid = new Board(gridSize);
+    public Game(int boardSize) {
+        board = new Board(boardSize);
     }
 
     public void move(String direction) {
-        grid.moveSnake(direction);
+        board.moveSnake(direction);
     }
 
-    public Board getGrid() {
-        return grid;
+    public Board getBoard() {
+        return board;
     }
 }
