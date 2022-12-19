@@ -26,6 +26,7 @@ public class Board {
         board = new Cell[size][size];
         initBoard();
         generateSnake();
+        generateApple();
     }
 
     /**
@@ -87,6 +88,17 @@ public class Board {
         }
 
         return newPosition;
+    }
+
+    private void generateApple() {
+        boolean placed = false;
+        while(!placed) {
+            int[] position = generateRandomPosition();
+            if (!(getCell(position).getApple() || getCell(position).getSnake())) {
+                getCell(position).setApple(true);
+                placed = true;
+            } 
+        }
     }
 
     private int[] generateRandomPosition() {

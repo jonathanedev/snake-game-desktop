@@ -22,6 +22,7 @@ public class CellPanel extends JPanel {
 
     private Color getColour() {
         if (cell.getSnake()) return new Color(255, 153, 0);
+        if (cell.getApple()) return Color.RED;
         return new Color(0, 153, 5);
     }
 

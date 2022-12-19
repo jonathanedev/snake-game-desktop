@@ -8,6 +8,7 @@ package snake.game;
  */
 public class Cell {
     private boolean snake = false;
+    private boolean apple = false;
 
     public boolean getSnake() {
         return snake;
@@ -15,5 +16,13 @@ public class Cell {
 
     public void setSnake(boolean snake) {
         this.snake = snake;
+    }
+
+    public boolean getApple() {
+        return apple;
+    }
+
+    public void setApple(boolean apple) {
+        this.apple = apple;
     }
 }
