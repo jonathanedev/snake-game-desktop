@@ -68,10 +68,10 @@ public class Game {
         }
     }
 
-    public void endGame() {
+    public void endGame(int score) {
         isPaused = true;
         runner.end();
-        System.out.println("end");
+        gui.displayEndGame(score);
     }
 
     public Board getBoard() {

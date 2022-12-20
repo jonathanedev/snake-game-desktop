@@ -29,6 +29,10 @@ public class Snake {
         position.remove(0);
     }
 
+    public int getLength() {
+        return position.size();
+    }
+
     public String getDirection() {
         return direction;
     }
