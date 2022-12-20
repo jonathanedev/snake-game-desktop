@@ -13,7 +13,7 @@ import snake.GUI;
  */
 public class Game {
 
-    public static final int DEFAULT_BOARD_SIZE = 25;
+    public static final int DEFAULT_BOARD_SIZE = 20;
     private static final int TIME_BETWEEN_UPDATES = 250;
 
     public Object lock = new Object();
@@ -28,11 +28,15 @@ public class Game {
 
     public Game(GUI gui, int boardSize) {
         this.gui = gui;
-        board = new Board(boardSize);
+        board = new Board(this, boardSize);
 
         runner = new Runner();
         Thread thread = new Thread(runner);
         thread.start();
+    }
+
+    public void play() {
+        isPaused = false;
     }
 
     public void move() {
@@ -64,12 +68,14 @@ public class Game {
         }
     }
 
-    public Board getBoard() {
-        return board;
+    public void endGame(int score) {
+        isPaused = true;
+        runner.end();
+        gui.displayEndGame(score);
     }
 
-    public void play() {
-        isPaused = false;
+    public Board getBoard() {
+        return board;
     }
 
     public boolean isPaused() {
@@ -81,11 +87,12 @@ public class Game {
     }
 
     public class Runner implements Runnable {
-        boolean running = true;
+        volatile boolean running = true;
 
         @Override
         public void run() {
             while(running) {
+                //System.out.print("d");
                 move();
             } 
         }

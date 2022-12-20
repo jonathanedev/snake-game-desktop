@@ -29,11 +29,16 @@ public class Snake {
         position.remove(0);
     }
 
+    public int getLength() {
+        return position.size();
+    }
+
     public String getDirection() {
         return direction;
     }
 
     public void setDirection(String direction) {
-        this.direction = direction;
+        if ((this.direction.equals("e") && direction.equals("w")) || (this.direction.equals("w") && direction.equals("e")) || (this.direction.equals("n") && direction.equals("s")) || (this.direction.equals("s") && direction.equals("n"))) return;
+        else this.direction = direction;
     }
 }

@@ -13,15 +13,17 @@ public class Board {
     private static final int DEFAULT_BOARD_SIZE = 15;
     private static final int DEFAULT_SNAKE_LENGTH = 3;
 
+    private Game game;
     private int boardSize;
     private Cell[][] board;
     private Snake snake;
 
-    public Board() {
-        this(DEFAULT_BOARD_SIZE);
+    public Board(Game game) {
+        this(game, DEFAULT_BOARD_SIZE);
     }
 
-    public Board(int size) {
+    public Board(Game game, int size) {
+        this.game = game;
         boardSize = size;
         board = new Cell[size][size];
         initBoard();
@@ -59,7 +61,11 @@ public class Board {
         String direction = snake.getDirection();
         Integer[] newPosition = getTargetPosition(snake.getHead(), direction);
 
-        if (getCell(newPosition).getApple()) {
+        if (newPosition[0] >= boardSize || newPosition[0] < 0 || newPosition[1] >= boardSize || newPosition[1] < 0) {
+            death();
+        } else if (getCell(newPosition).getSnake()) {
+            death();
+        } else if (getCell(newPosition).getApple()) {
             appleCollision(newPosition);
             generateApple();
         } else {
@@ -68,6 +74,10 @@ public class Board {
             getCell(newPosition).setSnake(true);
             snake.removePosition();
         }
+    }
+
+    private void death() {
+        game.endGame(snake.getLength());
     }
 
     private void appleCollision(Integer[] position) {
