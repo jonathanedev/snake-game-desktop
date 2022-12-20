@@ -13,7 +13,7 @@ import snake.GUI;
  */
 public class Game {
 
-    public static final int DEFAULT_BOARD_SIZE = 25;
+    public static final int DEFAULT_BOARD_SIZE = 20;
     private static final int TIME_BETWEEN_UPDATES = 250;
 
     public Object lock = new Object();
@@ -81,11 +81,12 @@ public class Game {
     }
 
     public class Runner implements Runnable {
-        boolean running = true;
+        volatile boolean running = true;
 
         @Override
         public void run() {
             while(running) {
+                //System.out.print("d");
                 move();
             } 
         }
