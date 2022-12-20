@@ -114,8 +114,8 @@ public class Board {
 
     private int[] generateRandomPosition() {
         int[] position = new int[2];
-        position[0] = ThreadLocalRandom.current().nextInt(0, boardSize + 1);
-        position[1] = ThreadLocalRandom.current().nextInt(0, boardSize + 1);
+        position[0] = ThreadLocalRandom.current().nextInt(0, boardSize);
+        position[1] = ThreadLocalRandom.current().nextInt(0, boardSize);
         return position;
     }
 
@@ -131,7 +131,7 @@ public class Board {
         return board[i][j];
     }
 
-    public int getGridSize() {
+    public int getBoardSize() {
         return boardSize;
     }
 }

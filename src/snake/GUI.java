@@ -5,27 +5,26 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import snake.game.Game;
-import snake.gui.GridPanel;
+import snake.gui.BoardPanel;
+import snake.gui.MenuBar;
 
 public class GUI extends JFrame {
 
     private Game game;
-    private GridPanel gridPanel;
+    private BoardPanel boardPanel;
 
     public static void main(String[] args) {
         new GUI();
     }
 
     public GUI() {
-        game = new Game();
-
         setTitle("Snake");
         setLookAndFeel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setJMenuBar(new MenuBar(this));
         setResizable(false);
         initComponents();
         setVisible(true);
-
         keyBinding();
     }
 
@@ -40,12 +39,11 @@ public class GUI extends JFrame {
     }
 
     private void initComponents() {
-        gridPanel = new GridPanel(this);
-        add(gridPanel);
+        boardPanel = new BoardPanel(this);
+        add(boardPanel);
         pack();
     }
 
-    
     private void keyBinding() {
         class KeyBinding extends KeyAdapter {
 
@@ -72,10 +70,23 @@ public class GUI extends JFrame {
 
     public void handleMove(String direction) {
         game.move(direction);
-        gridPanel.update();
+        boardPanel.update();
     }
 
-    public int getGridPanelSize() {
+    public void reset(int size) {
+        getContentPane().removeAll();
+        initGameComponents(size);
+        repaint();
+    }
+
+    private void initGameComponents(int size) {
+        game = new Game(size);
+        boardPanel = new BoardPanel(this, game);
+        add(boardPanel);
+        pack();
+    }
+
+    public int getBoardPanelSize() {
         return ((int) (0.7 * getScreenHeight()));
     }
 
