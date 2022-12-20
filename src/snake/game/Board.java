@@ -55,7 +55,8 @@ public class Board {
     }
 
     
-    public void moveSnake(String direction) {
+    public void moveSnake() {
+        String direction = snake.getDirection();
         Integer[] newPosition = getTargetPosition(snake.getHead(), direction);
 
         if (getCell(newPosition).getApple()) {
@@ -117,6 +118,10 @@ public class Board {
         position[0] = ThreadLocalRandom.current().nextInt(0, boardSize);
         position[1] = ThreadLocalRandom.current().nextInt(0, boardSize);
         return position;
+    }
+
+    public void changeSnakeDirection(String direction) {
+        snake.setDirection(direction);
     }
 
     public Cell getCell(Integer[] position) {

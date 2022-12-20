@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Snake {
 
     private ArrayList<Integer[]> position = new ArrayList<>();
+    private String direction = "e";
 
     public Integer[] getHead() {
         return position.get(position.size()-1);
@@ -26,5 +27,13 @@ public class Snake {
 
     public void removePosition() {
         position.remove(0);
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 }
