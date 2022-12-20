@@ -1,5 +1,6 @@
 package snake.gui;
 
+import java.awt.Dimension;
 import java.util.Optional;
 
 import javax.swing.JMenuBar;
@@ -13,7 +14,7 @@ public class MenuBar extends JMenuBar {
     
     protected final GUI gui;
     private final JMenuItem newGame;
-
+    private final JMenuItem scoreBoard;
 
     public MenuBar(GUI gui) {
         super();
@@ -21,8 +22,11 @@ public class MenuBar extends JMenuBar {
         setVisible(true);
 
         newGame = new JMenuItem("New Game");
+        scoreBoard = new JMenuItem("Scoreboard");
         add(newGame);
+        add(scoreBoard);
         newGame.addActionListener(e -> handleNew());
+        scoreBoard.addActionListener(e -> handleScoreBoard());
     }
 
     private void handleNew() {
@@ -44,5 +48,9 @@ public class MenuBar extends JMenuBar {
                 System.out.println(e);
             }
         }
+    }
+
+    private void handleScoreBoard() {
+
     }
 }
