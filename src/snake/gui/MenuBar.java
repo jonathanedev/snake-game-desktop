@@ -7,6 +7,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import snake.GUI;
+import snake.game.Game;
 
 public class MenuBar extends JMenuBar {
     
@@ -34,7 +35,7 @@ public class MenuBar extends JMenuBar {
     private Optional<Integer> selectSize() {
         while(true) {
             try {
-                String input = JOptionPane.showInputDialog(this, "Board Size:", 25);
+                String input = JOptionPane.showInputDialog(this, "Board Size:", Game.DEFAULT_BOARD_SIZE);
                 if (input == null) return Optional.empty();
 
                 int choice = Integer.parseInt(input);

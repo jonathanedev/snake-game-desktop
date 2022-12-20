@@ -28,11 +28,15 @@ public class Game {
 
     public Game(GUI gui, int boardSize) {
         this.gui = gui;
-        board = new Board(boardSize);
+        board = new Board(this, boardSize);
 
         runner = new Runner();
         Thread thread = new Thread(runner);
         thread.start();
+    }
+
+    public void play() {
+        isPaused = false;
     }
 
     public void move() {
@@ -64,12 +68,14 @@ public class Game {
         }
     }
 
-    public Board getBoard() {
-        return board;
+    public void endGame() {
+        isPaused = true;
+        runner.end();
+        System.out.println("end");
     }
 
-    public void play() {
-        isPaused = false;
+    public Board getBoard() {
+        return board;
     }
 
     public boolean isPaused() {
