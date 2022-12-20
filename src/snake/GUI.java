@@ -57,10 +57,10 @@ public class GUI extends JFrame {
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
 
-                if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) handleMove("n");
-                else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) handleMove("s");
-                else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) handleMove("w");
-                else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) handleMove("e");
+                if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) handleInput("n");
+                else if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) handleInput("s");
+                else if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) handleInput("w");
+                else if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) handleInput("e");
             }
         }
 
@@ -68,9 +68,12 @@ public class GUI extends JFrame {
         this.addKeyListener(new KeyBinding(this));
     }
 
-    public void handleMove(String direction) {
-        game.move(direction);
-        boardPanel.update();
+    public void handleInput(String direction) {
+        if (game == null) return;
+        System.out.println(direction);
+        game.getBoard().changeSnakeDirection(direction);
+        game.play(); 
+        System.out.println(game.isPaused());       
     }
 
     public void reset(int size) {
@@ -80,10 +83,16 @@ public class GUI extends JFrame {
     }
 
     private void initGameComponents(int size) {
-        game = new Game(size);
+        if (game != null) game.getRunner().end();
+
+        game = new Game(this, size);
         boardPanel = new BoardPanel(this, game);
         add(boardPanel);
         pack();
+    }
+
+    public void update() {
+        boardPanel.update();
     }
 
     public int getBoardPanelSize() {
