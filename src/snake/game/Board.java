@@ -57,7 +57,6 @@ public class Board {
     
     public void moveSnake() {
         String direction = snake.getDirection();
-        System.out.println(direction);
         Integer[] newPosition = getTargetPosition(snake.getHead(), direction);
 
         if (getCell(newPosition).getApple()) {

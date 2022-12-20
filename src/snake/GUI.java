@@ -70,10 +70,8 @@ public class GUI extends JFrame {
 
     public void handleInput(String direction) {
         if (game == null) return;
-        System.out.println(direction);
         game.getBoard().changeSnakeDirection(direction);
-        game.play(); 
-        System.out.println(game.isPaused());       
+        game.play();     
     }
 
     public void reset(int size) {

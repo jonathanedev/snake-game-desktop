@@ -36,9 +36,7 @@ public class Game {
     }
 
     public void move() {
-        System.out.println("pl");
         while (!isPaused()) {
-            System.out.print("ou");
             allowPause();
             board.moveSnake();
             gui.update();
