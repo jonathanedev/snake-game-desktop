@@ -77,7 +77,7 @@ public class Board {
     }
 
     private void death() {
-        game.endGame(snake.getLength());
+        game.endGame(snake.getLength() - DEFAULT_SNAKE_LENGTH);
     }
 
     private void appleCollision(Integer[] position) {
