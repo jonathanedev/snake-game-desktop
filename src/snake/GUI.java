@@ -67,6 +67,7 @@ public class GUI extends JFrame {
         for(i=0;i<scores.length;i++){
             if(scores[i]<score) break;
         }
+        if (i==scores.length) return;
         for(int k=scores.length-2; k>=i; k--){
             scores[k+1]=scores[k];            
         }
