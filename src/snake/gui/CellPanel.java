@@ -15,9 +15,9 @@ public class CellPanel extends JPanel {
     public CellPanel(Cell cell) {
         this.cell = cell;
 
-        Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
-        setBackground(getColour());
-        setBorder(blackLine);
+        Border greenline = BorderFactory.createLineBorder(new Color(5, 171, 5));
+        setBorder(greenline);
+        refresh();
     }
 
     private Color getColour() {
