@@ -2,21 +2,35 @@ package snake.gui;
 
 import java.util.Optional;
 
+import javax.swing.Box;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import snake.GUI;
+import snake.game.Board;
 import snake.game.Game;
 
 public class MenuBar extends JMenuBar {
 
+    private GUI gui;
+    private JLabel scoreLabel = new JLabel("Score: 0   ");
+
     public MenuBar(GUI gui) {
         super();
+        this.gui = gui;
         setVisible(true);
 
         add(new OptionsMenu(gui));
+        add(Box.createHorizontalGlue());
+        add(scoreLabel);
+    }
+
+    public void update() {
+        int score = gui.getGame().getBoard().getSnake().getLength() - Board.DEFAULT_SNAKE_LENGTH;
+        scoreLabel.setText("Score: " + score + "   ");
     }
 
     private class OptionsMenu extends JMenu {

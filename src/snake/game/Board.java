@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Board {
 
     private static final int DEFAULT_BOARD_SIZE = 15;
-    private static final int DEFAULT_SNAKE_LENGTH = 3;
+    public static final int DEFAULT_SNAKE_LENGTH = 3;
 
     private Game game;
     private int boardSize;
@@ -148,5 +148,9 @@ public class Board {
 
     public int getBoardSize() {
         return boardSize;
+    }
+
+    public Snake getSnake() {
+        return snake;
     }
 }

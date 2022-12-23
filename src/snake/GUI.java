@@ -15,6 +15,7 @@ public class GUI extends JFrame {
 
     private static final String filepath = "./data/score.snake";
 
+    private MenuBar menuBar;
     private Game game;
     private int[] scores;
     private BoardPanel boardPanel;
@@ -27,7 +28,8 @@ public class GUI extends JFrame {
         setTitle("Snake");
         setLookAndFeel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setJMenuBar(new MenuBar(this));
+        menuBar = new MenuBar(this);
+        setJMenuBar(menuBar);
         setResizable(false);
         initComponents();
         setVisible(true);
@@ -120,6 +122,7 @@ public class GUI extends JFrame {
 
     public void update() {
         boardPanel.update();
+        menuBar.update();
     }
 
     public void displayEndGame(int score) {
