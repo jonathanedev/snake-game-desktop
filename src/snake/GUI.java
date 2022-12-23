@@ -3,14 +3,20 @@ package snake;
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.nio.file.Path;
 
+import snake.files.SnakeFileReader;
+import snake.files.SnakeFileWriter;
 import snake.game.Game;
 import snake.gui.BoardPanel;
 import snake.gui.MenuBar;
 
 public class GUI extends JFrame {
 
+    private static final String filepath = "./data/score.snake";
+
     private Game game;
+    private int[] scores;
     private BoardPanel boardPanel;
 
     public static void main(String[] args) {
@@ -43,6 +49,29 @@ public class GUI extends JFrame {
         boardPanel = new BoardPanel(this);
         add(boardPanel);
         pack();
+
+        loadScores();
+    }
+
+    private void loadScores() {
+        scores = SnakeFileReader.read(Path.of(filepath));
+    }
+
+    public void updateHighScore(int score) {
+        checkHighScore(score);
+        SnakeFileWriter.write(Path.of(filepath), scores);
+    }
+
+    public void checkHighScore(int score) {        
+        int i;
+        for(i=0;i<scores.length;i++){
+            if(scores[i]<score) break;
+        }
+        if (i==scores.length) return;
+        for(int k=scores.length-2; k>=i; k--){
+            scores[k+1]=scores[k];            
+        }
+        scores[i]=score;
     }
 
     private void keyBinding() {

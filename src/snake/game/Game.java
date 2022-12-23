@@ -72,6 +72,7 @@ public class Game {
         isPaused = true;
         runner.end();
         gui.displayEndGame(score);
+        gui.updateHighScore(score);
     }
 
     public Board getBoard() {
