@@ -64,7 +64,13 @@ public class MenuBar extends JMenuBar {
         }
     
         private void handleScoreBoard() {
-    
+            int[] scores = gui.getScores();
+            String msg = "";
+            for (int i=1; i<=scores.length; i++) {
+                msg += "" + i + "  ................................  " + scores[i-1];
+                msg += "\n";
+            }
+            JOptionPane.showMessageDialog(gui, msg, "Highest Scores", JOptionPane.INFORMATION_MESSAGE);
         }
 
         private void handleHelp() {

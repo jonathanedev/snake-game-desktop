@@ -140,4 +140,8 @@ public class GUI extends JFrame {
     public Game getGame() {
         return game;
     }
+
+    public int[] getScores() {
+        return scores;
+    }
 }
