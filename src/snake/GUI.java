@@ -31,7 +31,8 @@ public class GUI extends JFrame {
         menuBar = new MenuBar(this);
         setJMenuBar(menuBar);
         setResizable(false);
-        initComponents();
+        reset(Game.DEFAULT_BOARD_SIZE);
+        loadScores();
         setVisible(true);
         keyBinding();
     }
@@ -45,14 +46,6 @@ public class GUI extends JFrame {
             e.printStackTrace();
             System.exit(1);
         }
-    }
-
-    private void initComponents() {
-        boardPanel = new BoardPanel(this);
-        add(boardPanel);
-        pack();
-
-        loadScores();
     }
 
     private void loadScores() {
