@@ -3,6 +3,8 @@ package snake.gui;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
@@ -15,9 +17,10 @@ public class CellPanel extends JPanel {
     public CellPanel(Cell cell) {
         this.cell = cell;
 
-        Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+        Border greenline = BorderFactory.createLineBorder(new Color(5, 171, 5));
         setBackground(getColour());
-        setBorder(blackLine);
+        add(new JLabel(new ImageIcon("./assets/grass.png")));
+        setBorder(greenline);
     }
 
     private Color getColour() {
