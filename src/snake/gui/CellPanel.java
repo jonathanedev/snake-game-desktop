@@ -14,9 +14,6 @@ public class CellPanel extends JPanel {
 
     public CellPanel(Cell cell) {
         this.cell = cell;
-
-        Border greenline = BorderFactory.createLineBorder(new Color(5, 171, 5));
-        setBorder(greenline);
         refresh();
     }
 
@@ -26,7 +23,14 @@ public class CellPanel extends JPanel {
         return new Color(0, 153, 5);
     }
 
+    private Border getBorderColour() {
+        if (cell.getSnake()) return BorderFactory.createLineBorder(new Color(194, 123, 17));
+        if (cell.getApple()) return BorderFactory.createLineBorder(new Color(166, 13, 13));
+        return BorderFactory.createLineBorder(new Color(5, 171, 5));
+    }
+
     public void refresh() {
         setBackground(getColour());
+        setBorder(getBorderColour());
     }
 }
