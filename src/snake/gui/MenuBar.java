@@ -50,7 +50,7 @@ public class MenuBar extends JMenuBar {
             help = new JMenuItem("Help");
             add(newGame);
             add(scoreBoard);
-            add(help);
+            // add(help);
             newGame.addActionListener(e -> handleNew());
             scoreBoard.addActionListener(e -> handleScoreBoard());
             help.addActionListener(e -> handleHelp());
